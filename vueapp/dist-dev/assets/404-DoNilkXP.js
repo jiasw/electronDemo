@@ -1,0 +1,2 @@
+import{_ as t}from"./Error.vue_vue_type_script_setup_true_lang-C-EnMu-R.js";import{c as a}from"./index-Spw_2G4t.js";import{v as n,x as c,J as i,u as m,az as p}from"./vue-chunks-COp0tDkU.js";import"./element-plus-Cbe27J2b.js";const h=n({__name:"404",setup(u){const{push:r}=p(),s=a(),e=()=>{var o;r((o=s.addRouters[0])==null?void 0:o.path)};return(o,_)=>(c(),i(m(t),{onErrorClick:e}))}});export{h as default};
+//# sourceMappingURL=404-DoNilkXP.js.map
