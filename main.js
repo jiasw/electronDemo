@@ -63,13 +63,16 @@ function createWindow() {
     height: 600,
     webPreferences: {
       nodeIntegration: true, //  需要开启nodeIntegration
+       preload: path.join(__dirname, 'preload.js')
     },
   });
 // 指定要服务的本地目录
   const localDirectory = path.join(__dirname, 'vueapp');
   // 启动本地服务器
   server = createLocalServer(localDirectory);
-  mainWindow.loadURL(`http://127.0.0.1:${server.address().port}/`);
+  //mainWindow.loadURL(`http://127.0.0.1:${server.address().port}/`);
+
+  mainWindow.loadFile('index.html');
 }
 app.whenReady().then(() => {
   createWindow();
