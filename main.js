@@ -2,7 +2,6 @@ const { app, BrowserWindow } = require('electron')
 const path = require('path');
 const express = require('express');
 
-
 let mainWindow;
 let server;
 
@@ -41,7 +40,6 @@ function createLocalServer(directoryPath) {
   saveConfig();
   console.log(`Local server count: ${config.Count}`);
   const expressApp = express();
-  
   // 静态文件服务
   expressApp.use(express.static(directoryPath));
   
@@ -50,9 +48,11 @@ function createLocalServer(directoryPath) {
     res.status(404).send('File not found');
   });
  
-  return expressApp.listen(0, () => {
-    const port = server.address().port;
-    console.log(`Local server running at http://127.0.0.1:${port}/`);
+  return expressApp.listen(0, (err) => {
+    if (err) {
+      console.error(err);
+      return;
+    }
   });
 }
 
@@ -67,12 +67,12 @@ function createWindow() {
     },
   });
 // 指定要服务的本地目录
-  const localDirectory = path.join(__dirname, 'vueapp');
+  const localDirectory = path.join(__dirname, 'static');
   // 启动本地服务器
   server = createLocalServer(localDirectory);
-  //mainWindow.loadURL(`http://127.0.0.1:${server.address().port}/`);
+ console.log(`Server running at http://127.0.0.1:${server.address().port}`);
 
-  mainWindow.loadFile('index.html');
+  mainWindow.loadURL(`http://127.0.0.1:${server.address().port}/index.html`);
 }
 app.whenReady().then(() => {
   createWindow();
